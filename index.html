@@ -23,6 +23,7 @@
 
     </style>
     <link href="./src/assets/styles/quasar.prod.css" rel="stylesheet" type="text/css">
+    <link rel="manifest" href="/manifest.json">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quasar-framework/0.17.20/icons.material-icons.umd.min.js"
         integrity="sha512-v2T15YY+qtHBVqlX21f1zNcrIm0nKBmlCMSbVNTcPyAr0wnIGgQXOWPdPFanKMGPd/eIaz8+njZwJCsiMdVANw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -64,7 +65,11 @@
     <script src="./src/app/main.js"></script>
 
     <script>
-
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
     </script>
 </body>
 
