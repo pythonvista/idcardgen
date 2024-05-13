@@ -48,8 +48,6 @@
     <div Include="./src/components/header.html"></div>
     <div v-if="activeUser">
         <di Include="./src/components/dashboard.html"></di>
-        {{database.user}}
-
     </div>
     <div class="auth" v-else>
         <div v-if="auth == 'login'" Include="./src/components/login.html"></div>
