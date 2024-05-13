@@ -1,0 +1,120 @@
+<section class="py-12 bg-white sm:py-16 lg:py-20">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-sm mx-auto">
+            <div class="text-center">
+
+                <h1 class="mt-12 text-3xl font-bold text-gray-900">Create free account</h1>
+                <p class="mt-4 text-sm font-medium text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Turpis morbi pulvinar venenatis non.</p>
+            </div>
+
+
+
+            <div class="relative mt-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+
+                <div class="relative flex justify-center">
+                    <span class="px-2 text-sm text-gray-400 bg-white"> or </span>
+                </div>
+            </div>
+
+            <form action="#" method="POST" class="mt-4">
+                <div class="space-y-4">
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> First Name </label>
+                        <div class="mt-2">
+                            <input v-model="dform.firstName" type="text" name="" id="" placeholder="First Name" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> Last Name </label>
+                        <div class="mt-2">
+                            <input v-model="dform.lastName" type="text" name="" id="" placeholder="Last Name" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> Email </label>
+                        <div class="mt-2">
+                            <input v-model="dform.email" type="email" name="" id="" placeholder="Email address" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> Username </label>
+                        <div class="mt-2">
+                            <input v-model="dform.username" type="text" name="" id="" placeholder="Username" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> Gender </label>
+                        <div class="mt-2">
+                            <q-select label="Select Gender" v-model="dform.gender" class="border block w-full px-4  placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" :options="['Male', 'Female']"></q-select>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900">Age </label>
+                        <div class="mt-2">
+                            <input v-model="dform.age" type="number" name="" id="" placeholder="Age" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> Matric No </label>
+                        <div class="mt-2">
+                            <input v-model="dform.matricNo" type="text" name="" id="" placeholder="Matric No" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> Date Of Birth </label>
+                        <div class="mt-2">
+                            <input v-model="dform.dob" type="date" name="" id="" placeholder="Date of birth" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="" class="text-sm font-bold text-gray-900"> Password </label>
+                        <div class="mt-2">
+                            <input v-model="dform.password" type="password" name="" id="" placeholder="Password (min. 8 character)" value=""
+                                class="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600" />
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" name="remember-password" id="remember-password"
+                                class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-600" />
+                        </div>
+
+                        <div class="ml-3">
+                            <label for="remember-password" class="text-sm font-medium text-gray-900"> I agree to the <a
+                                    href="#" title="" class="text-indigo-600 hover:underline">Terms & Conditions</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <q-btn  type="button" @click="Register"
+                            class="inline-flex items-center justify-center w-full px-6 py-3 text-sm font-semibold leading-5 text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500">
+                            Sign up
+                        </q-btn>
+                    </div>
+                </div>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-sm font-medium text-gray-900">Already have an account? <a @click="auth = 'login'"
+                        title="" class="font-bold hover:underline"> Login now </a></p>
+            </div>
+        </div>
+    </div>
+</section>

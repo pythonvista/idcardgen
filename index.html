@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/4.0.0/iconfont/material-icons.min.css"
+        referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .q-icon {
+            display: none !important;
+        }
+
+        .notify {
+            right: -200px;
+            transition: .5s;
+        }
+        
+
+    </style>
+    <link href="./src/assets/styles/quasar.prod.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quasar-framework/0.17.20/icons.material-icons.umd.min.js"
+        integrity="sha512-v2T15YY+qtHBVqlX21f1zNcrIm0nKBmlCMSbVNTcPyAr0wnIGgQXOWPdPFanKMGPd/eIaz8+njZwJCsiMdVANw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./src/assets/js/tailwind.js"></script>
+    <script src="./src/assets/js/lordicon.js"></script>
+    <title>Document</title>
+</head>
+
+<body id="app" class="relative ">
+
+
+    <div v-show="notify"
+        class=" px-4 flex items-center gap-3  rounded-md shadow-md bg-white absolute top-[80px] py-3 notify">
+        <div>
+            <i v-if="config.type == 'positive'" class="fa-solid text-green-500 fa-circle-check"></i>
+            <i v-else class="fa-solid text-red-500 fa-circle-info"></i>
+
+        </div>
+        <p :class="{'text-green-500': config.type == 'positive', 'text-red-500': config.type == 'negative'}"
+            class="font-bold">{{config.message}}</p>
+    </div>
+    <div Include="./src/components/header.html"></div>
+    <div v-if="activeUser">
+        <di Include="./src/components/dashboard.html"></di>
+        {{database.user}}
+
+    </div>
+    <div class="auth" v-else>
+        <div v-if="auth == 'login'" Include="./src/components/login.html"></div>
+        <div v-if="auth == 'register'" Include="./src/components/register.html"></div>
+    </div>
+
+
+
+
+
+    <script src="./src/app/vue.global.prod.js"></script>
+    <script src="./src/app/quasar.umd.prod.js"></script>
+    <script src="./src/app/main.js"></script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

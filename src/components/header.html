@@ -1,0 +1,32 @@
+<header class="bg-black border-b border-gray-700">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <!-- lg+ -->
+        <nav class="flex items-center justify-between h-16 lg:h-20">
+            <div class="flex-shrink-0">
+                <a href="#" title="" class="flex text-white font-bold text-xl">
+                    IDCARDGEN
+                </a>
+            </div>
+
+            <button v-if="!activeUser" type="button"
+                class="inline-flex p-2 text-white transition-all duration-200 rounded-md focus:bg-gray-800 hover:bg-gray-800">
+                Login
+            </button>
+            <div v-else class="flex gap-2">
+                <button type="button"
+                    class="inline-flex p-2 text-white transition-all duration-200 rounded-md focus:bg-gray-800 hover:bg-gray-800">
+                    Dashboard
+                </button>
+                <button type="button" @click="Logout"
+                    class="inline-flex bg-white shadow-10 rounded-md text-black p-2 text-white transition-all duration-200 rounded-md focus:bg-gray-800 hover:bg-gray-800">
+                    Log Out
+                </button>
+            </div>
+
+
+
+        </nav>
+
+
+    </div>
+</header>
