@@ -186,7 +186,7 @@ includeHTML(function () {
                         this.initDatabase('update', this.dform)
                         this.dform = {}
                         this.Notify('Registration Successfull', 'positive')
-                        this.auth = login
+                        this.auth = 'login'
                     } else {
                         this.Notify('Fields required', 'negative')
                         
