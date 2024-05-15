@@ -115,6 +115,15 @@ includeHTML(function () {
             }
         },
         methods: {
+            printDiv(divName) {
+                document.getElementById(divName);
+                var printWindow = window.open('', '_blank');
+                printWindow.document.write('<html><head><title>Print</title></head><body>');
+                printWindow.document.write(contentToPrint.innerHTML);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
+            },
             SwitchCard() {
                 if (this.cardView == true) {
                     this.cardView = false

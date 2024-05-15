@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-between items-center w-full">
+            <div  id="printable" class="flex   justify-between items-center w-full">
                 <div class="flex flex-col ">
                     <p class="text-white font-bold text-xl">Student</p>
                     <div class="bg-orange w-full">
@@ -102,22 +102,6 @@
 
 
             </div>
-
-
-
-            <!-- <img width="120" class=" rounded-xl"
-                src="https://cdn.rareblocks.xyz/collection/clarity/images/team/2/team-member-1.png" alt="" />
-
-            <div class="flex flex-col justify-start items-start gap-2">
-                <p class="font-bold">Fullname: <span class="font-semibold text-slate-700">{{database?.user?.firstName}}
-                {{database?.user?.lastName}}</span> </p>
-                <p class="font-bold">Email: <span class="font-semibold text-slate-700">{{database?.user?.email}}</span> </p>
-                <p class="font-bold">Age: <span class="font-semibold text-slate-700">{{database?.user?.age}}</span> </p>
-                <p class="font-bold">Matric No: <span class="font-semibold text-slate-700">{{database?.user?.matricNo}}</span> </p>
-                <p class="font-bold">Date of birth: <span class="font-semibold text-slate-700">{{database?.user?.dob}}</span> </p>
-
-            </div> -->
-
         </q-card-section>
 
         <q-card-section v-else class="card back h-full flex flex-col justify-center items-center gap-3">
@@ -130,6 +114,11 @@
         </q-card-section>
         <i @click="cardView = !cardView; Notify(cardView ? 'Front View' : 'Back View', 'positive')"
             class="fa-solid absolute text-white top-1 right-5 font-bold hover:bg-black hover:shadow-md hover:rounded-md p-1 z-10  fa-repeat"></i>
+
+            <i @click="printDiv('printable')"
+                class="fa-solid absolute text-white top-1 right-10 font-bold hover:bg-black hover:shadow-md hover:rounded-md p-1 z-10  fa-circle-down"></i>
+
+           
     </div>
 </q-dialog>
 <q-dialog persistent v-model="loader">
