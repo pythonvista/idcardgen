@@ -54,11 +54,14 @@ includeHTML(function () {
             uid: null,
             auth: 'login',
             notify: false,
-            config: {message: 'testing', type: 'positive'},
+            config: { message: 'testing', type: 'positive' },
             loginForm: {
                 username: '',
                 password: ''
             },
+            cardView: true,
+            dialog: false,
+            loader: false,
             dform: {
                 id: null,
                 email: null,
@@ -112,17 +115,49 @@ includeHTML(function () {
             }
         },
         methods: {
+            SwitchCard() {
+                if (this.cardView == true) {
+                    this.cardView = false
+                    this.Notify('Switching To Back Of Card', 'positive')
+                }
+
+                if (this.cardView == false) {
+                    this.cardView = true
+                    this.Notify('Switching To Front Of Card', 'positive')
+                }
+            },
+            GenerateIdCard() {
+                console.log(this.database)
+                if (this.database.user?.isGenerated) {
+                    this.dialog = true
+                } else {
+                    this.loader = true
+                    setTimeout(() => {
+                        let user = this.database.users.find((v) => v.id = this.database.user?.id) || {}
+                        if (user.id) {
+                            user['isGenerated'] = true
+                            this.database.user.isGenerated = true
+                            localStorage.setItem('users', JSON.stringify(this.database.users))
+                            localStorage.setItem('user', JSON.stringify(this.database.user))
+                        }
+                        this.loader = false 
+                        this.dialog = true
+                        this.Notify('ID Card Generated Successfull', 'positive')
+                        console.log(this.database)
+                    }, 5000)
+                }
+            },
             Notify(message, type) {
-               let notify = document.querySelector('.notify')
+                let notify = document.querySelector('.notify')
                 notify.style.right = "10px"
                 this.notify = true
                 this.config.message = message
                 this.config.type = type
                 setTimeout(() => {
-                  notify.style.right = "-200px"
-                    this.notify = false 
+                    notify.style.right = "-200px"
+                    this.notify = false
                     this.config = {}
-                },3000)
+                }, 3000)
             },
             initDatabase(type = '', data = {}) {
                 if (type == 'get') {
@@ -139,6 +174,7 @@ includeHTML(function () {
                 if (type == 'update') {
                     this.database.users.push(data)
                     localStorage.setItem('users', JSON.stringify(this.database.users))
+                    localStorage.setItem('user', JSON.stringify(this.database.user))
                 }
 
 
@@ -189,7 +225,7 @@ includeHTML(function () {
                         this.auth = 'login'
                     } else {
                         this.Notify('Fields required', 'negative')
-                        
+
                     }
 
 
