@@ -52,7 +52,7 @@ includeHTML(function () {
     const app = Vue.createApp({
         data: () => ({
             uid: null,
-            auth: 'login',
+            auth: 'home',
             notify: false,
             config: { message: 'testing', type: 'positive' },
             loginForm: {

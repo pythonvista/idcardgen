@@ -69,6 +69,7 @@
         <di Include="./src/components/dashboard.html"></di>
     </div>
     <div class="auth" v-else>
+        <div v-if="auth == 'home'" Include="./src/components/hero.html"></div>
         <div v-if="auth == 'login'" Include="./src/components/login.html"></div>
         <div v-if="auth == 'register'" Include="./src/components/register.html"></div>
     </div>
