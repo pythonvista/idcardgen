@@ -65,17 +65,47 @@
     </div>
 </section>
 <q-dialog v-model="dialog">
-    <div class="w-[99%] overflow-hidden relative min-h-[200px] bg-white py-2 ">
-        <div class="design_up rounded-full flex ">
-            <div class="h-full rounded-full">
+    <div class="w-[99%] overflow-hidden relative min-h-[210px] bg-white">
+
+
+        <q-card-section v-if="cardView"
+            class="card flex justify-center bg-[#333544] min-h-[210px] relative items-center gap-2 front">
+
+            <div
+                class="bottom_design absolute flex justify-between items-center px-4 bottom-[-4px] left-0 bg-white w-full py-1">
+                <p>Expires: 12 November, 2024</p>
+                <div class="flex gap-1">
+                    <div v-for="i in 15" :key="i" class="w-1 bg-black h-4"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center w-full">
+                <div class="flex flex-col ">
+                    <p class="text-white font-bold text-xl">Student</p>
+                    <div class="bg-orange w-full">
+                        <p class="font-bold text-lg">{{database?.user?.firstName}} {{database?.user?.lastName}}</p>
+
+                    </div>
+                    <p class="text-white font-bold text-lg">Dept: Computer Science</p>
+                    <p class="text-white font-bold">Matric No: {{database?.user?.matricNo}} </p>
+
+                </div>
+
+                <div class="p-2 bg-white">
+                    <img width="100" class="object-cover w"
+                        src="https://cdn.rareblocks.xyz/collection/clarity/images/team/2/team-member-1.png" alt="">
+                </div>
+
+                <div class="absolute pt-2 flex justify-center items-center top-0 left-0 w-full ">
+                    <img class="" width="60" src="https://i.imgur.com/osjBBbm.png" alt="">
+                </div>
+
 
             </div>
 
-        </div>
-        <div class="design_down rounded-full"></div>
 
-        <q-card-section v-if="cardView" class="card flex relative items-center gap-2 front">
-            <img width="120" class=" rounded-xl"
+
+            <!-- <img width="120" class=" rounded-xl"
                 src="https://cdn.rareblocks.xyz/collection/clarity/images/team/2/team-member-1.png" alt="" />
 
             <div class="flex flex-col justify-start items-start gap-2">
@@ -86,17 +116,20 @@
                 <p class="font-bold">Matric No: <span class="font-semibold text-slate-700">{{database?.user?.matricNo}}</span> </p>
                 <p class="font-bold">Date of birth: <span class="font-semibold text-slate-700">{{database?.user?.dob}}</span> </p>
 
-            </div>
-            
+            </div> -->
+
         </q-card-section>
 
         <q-card-section v-else class="card back h-full flex flex-col justify-center items-center gap-3">
-            <img id='barcode' :src="`https://api.qrserver.com/v1/create-qr-code/?data=${database?.user?.matricNo}&amp;size=150x150`" alt=""
-                title="HELLO" width="100" height="100" />
+            <img id='barcode'
+                :src="`https://api.qrserver.com/v1/create-qr-code/?data=${database?.user?.matricNo}&amp;size=150x150`"
+                alt="" title="HELLO" width="100" height="100" />
 
-                <p>{{database?.user?.matricNo}}</p>
+            <p>{{database?.user?.matricNo}}</p>
+            <p class="font-bold">Email: <span class="font-semibold text-slate-700">{{database?.user?.email}}</span> </p>
         </q-card-section>
-        <i @click="cardView = !cardView; Notify(cardView ? 'Front View' : 'Back View', 'positive')" class="fa-solid absolute top-5 right-5 font-bold hover:bg-white hover:shadow-md hover:rounded-md p-1 z-10  fa-repeat"></i>
+        <i @click="cardView = !cardView; Notify(cardView ? 'Front View' : 'Back View', 'positive')"
+            class="fa-solid absolute text-white top-1 right-5 font-bold hover:bg-black hover:shadow-md hover:rounded-md p-1 z-10  fa-repeat"></i>
     </div>
 </q-dialog>
 <q-dialog persistent v-model="loader">
