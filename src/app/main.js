@@ -115,14 +115,8 @@ includeHTML(function () {
             }
         },
         methods: {
-            printDiv(divName) {
-                document.getElementById(divName);
-                var printWindow = window.open('', '_blank');
-                printWindow.document.write('<html><head><title>Print</title></head><body>');
-                printWindow.document.write(contentToPrint.innerHTML);
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
-                printWindow.print();
+            Print() {
+                window.print()
             },
             SwitchCard() {
                 if (this.cardView == true) {
@@ -149,7 +143,7 @@ includeHTML(function () {
                             localStorage.setItem('users', JSON.stringify(this.database.users))
                             localStorage.setItem('user', JSON.stringify(this.database.user))
                         }
-                        this.loader = false 
+                        this.loader = false
                         this.dialog = true
                         this.Notify('ID Card Generated Successfull', 'positive')
                         console.log(this.database)

@@ -64,12 +64,12 @@
         </div>
     </div>
 </section>
-<q-dialog v-model="dialog">
-    <div class="w-[99%] overflow-hidden relative min-h-[210px] bg-white">
+<q-dialog  :maximized="true" class="bg-black flex justify-center items-center" v-model="dialog">
+    <div class="w-[99%] overflow-hidden shadow-md relative min-h-[210px] bg-white">
 
 
         <q-card-section v-if="cardView"
-            class="card flex justify-center bg-[#333544] min-h-[210px] relative items-center gap-2 front">
+            class="card flex justify-center rounded-md shadow-md my-1 mx-1 bg-[#333544] min-h-[210px] relative items-center gap-2 front">
 
             <div
                 class="bottom_design absolute flex justify-between items-center px-4 bottom-[-4px] left-0 bg-white w-full py-1">
@@ -104,7 +104,7 @@
             </div>
         </q-card-section>
 
-        <q-card-section v-else class="card back h-full flex flex-col justify-center items-center gap-3">
+        <q-card-section v-else class="card rounded-md back h-full shadow-md my-1 mx-1 flex flex-col justify-center items-center gap-3">
             <img id='barcode'
                 :src="`https://api.qrserver.com/v1/create-qr-code/?data=${database?.user?.matricNo}&amp;size=150x150`"
                 alt="" title="HELLO" width="100" height="100" />
@@ -112,13 +112,16 @@
             <p>{{database?.user?.matricNo}}</p>
             <p class="font-bold">Email: <span class="font-semibold text-slate-700">{{database?.user?.email}}</span> </p>
         </q-card-section>
-        <i @click="cardView = !cardView; Notify(cardView ? 'Front View' : 'Back View', 'positive')"
-            class="fa-solid absolute text-white top-1 right-5 font-bold hover:bg-black hover:shadow-md hover:rounded-md p-1 z-10  fa-repeat"></i>
+        <i id="no-print-3" @click="cardView = !cardView; Notify(cardView ? 'Front View' : 'Back View', 'positive')"
+            class="fa-solid absolute text-white top-2 right-5 font-bold hover:bg-black hover:shadow-md hover:rounded-md p-1 z-10  fa-repeat"></i>
 
-            <i @click="printDiv('printable')"
-                class="fa-solid absolute text-white top-1 right-10 font-bold hover:bg-black hover:shadow-md hover:rounded-md p-1 z-10  fa-circle-down"></i>
+            <!-- <i @click="printDiv('printable')"
+                class="fa-solid absolute text-white top-2 right-10 font-bold hover:bg-black hover:shadow-md hover:rounded-md p-1 z-10  fa-circle-down"></i> -->
 
-           
+           <div id="no-print-1" class="w-full px-2 py-3">
+            <q-btn @click="Print" id="no-print-2" color="green" class="w-full">Download Id Card</q-btn>
+
+           </div>
     </div>
 </q-dialog>
 <q-dialog persistent v-model="loader">
