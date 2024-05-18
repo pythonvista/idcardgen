@@ -62,6 +62,8 @@ includeHTML(function () {
             cardView: true,
             dialog: false,
             loader: false,
+            img: "https://landingfoliocom.imgix.net/store/collection/niftyui/images/team/8/member-2.png",
+            fileInputImage: null,
             dform: {
                 id: null,
                 email: null,
@@ -118,6 +120,74 @@ includeHTML(function () {
             Print() {
                 window.print()
             },
+            CreateImageObj(e) {
+                let file = e.target.files[0]
+                this.img = URL.createObjectURL(file)
+                this.UplaodImg(file)
+            },
+            base64Url(base64) {
+                try {
+                    const parts = base64.split(',');
+                    if (parts.length !== 2) {
+                        throw new Error('Invalid Base64 string');
+                    }
+
+                    const contentType = parts[0].split(':')[1].split(';')[0];
+                    const byteCharacters = atob(parts[1]);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    let blob = new Blob([byteArray], { type: contentType });
+                    const url = URL.createObjectURL(blob);
+                    this.img = url
+                } catch (err) {
+                    console.log(err)
+                }
+            },
+            UplaodImg(file) {
+                const reader = new FileReader();
+                let db = this.database
+                reader.onload = function () {
+                    try {
+                        const base64 = reader.result;
+                        const parts = base64.split(',');
+                        if (parts.length !== 2) {
+                            throw new Error('Invalid Base64 string');
+                        }
+
+                        const contentType = parts[0].split(':')[1].split(';')[0];
+                        const byteCharacters = atob(parts[1]);
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        let blob = new Blob([byteArray], { type: contentType });
+                        const url = URL.createObjectURL(blob);
+                        let user = db.users.find((v) => v.id = db.user?.id) || {}
+                        if (user.id) {
+                            user['img'] = base64
+                            user.img = base64
+                            localStorage.setItem('users', JSON.stringify(db.users))
+                            localStorage.setItem('user', JSON.stringify(user))
+                        }
+                    } catch (err) {
+                        console.log(err)
+                    }
+
+
+                };
+
+                reader.readAsDataURL(file);
+            },
+
+            InitUpload() {
+                let mm = document.getElementById("fileUpload")
+                console.log(mm.click())
+                document.getElementById("fileUpload").click();
+            },
             SwitchCard() {
                 if (this.cardView == true) {
                     this.cardView = false
@@ -165,8 +235,15 @@ includeHTML(function () {
             initDatabase(type = '', data = {}) {
                 if (type == 'get') {
                     let users = JSON.parse(localStorage.getItem('users')) || []
+                    let user = JSON.parse(localStorage.getItem('user')) || {}
                     if (users.length > 0) {
                         this.database.users = users
+                        this.database.user = user
+                        if (this.database?.user?.id) {
+                            console.log(this.database.user)
+                            this.base64Url(this.database.user.img)
+
+                        }
                     } else {
                         this.database.users = []
                         this.database.users.push({ id: '862397hjhkku9d793', email: 'testing@gmail.com', firstName: 'John', lastName: 'Doe', username: 'johndoe', gender: 'male', age: 23, password: 'Testing@12', img: '', matricNo: '12354783', dob: '1998-23-05' })
