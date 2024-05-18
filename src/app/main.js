@@ -151,6 +151,7 @@ includeHTML(function () {
                 let db = this.database
                 reader.onload = function () {
                     try {
+                        this.loader = true
                         const base64 = reader.result;
                         const parts = base64.split(',');
                         if (parts.length !== 2) {
@@ -171,8 +172,9 @@ includeHTML(function () {
                             user['img'] = base64
                             user.img = base64
                             localStorage.setItem('users', JSON.stringify(db.users))
-                            localStorage.setItem('user', JSON.stringify(user))
+                            localStorage.setItem('userData', JSON.stringify(user))
                         }
+                        this.loader = false
                     } catch (err) {
                         console.log(err)
                     }
@@ -235,11 +237,13 @@ includeHTML(function () {
             initDatabase(type = '', data = {}) {
                 if (type == 'get') {
                     let users = JSON.parse(localStorage.getItem('users')) || []
-                    let user = JSON.parse(localStorage.getItem('user')) || {}
+                    let user = JSON.parse(localStorage.getItem('userData')) || {}
                     if (users.length > 0) {
                         this.database.users = users
                         this.database.user = user
-                        if (this.database?.user?.id) {
+                        this.uid = user.id
+                        this.user = user
+                        if (this.database?.user?.id && this.user.img) {
                             console.log(this.database.user)
                             this.base64Url(this.database.user.img)
 
@@ -254,7 +258,7 @@ includeHTML(function () {
                 if (type == 'update') {
                     this.database.users.push(data)
                     localStorage.setItem('users', JSON.stringify(this.database.users))
-                    localStorage.setItem('user', JSON.stringify(this.database.user))
+                    localStorage.setItem('userData', JSON.stringify(this.database.user))
                 }
 
 
